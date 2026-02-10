@@ -1,5 +1,16 @@
-package com.sorting;
+public class Sorter {
 
-public interface Sorter<T extends Comparable<T>> {
-    void sort(T[] array);
+    public static void gnomeSort(int[] arr);
+
+    public static void mergeSort(int[] arr);
+    private static void mergeSort(int[] arr, int izq, int der);
+    private static void merge(int[] arr, int izq, int medio, int der);
+
+    public static void quickSort(int[] arr);
+    private static void quickSort(int[] arr, int low, int high);
+    private static int partition(int[] arr, int low, int high);
+
+    public static void radixSort(int[] arr);
+
+    public static void bubbleSort(int[] arr); // algoritmo extra
 }
