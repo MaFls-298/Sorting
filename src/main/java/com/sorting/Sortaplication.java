@@ -22,12 +22,12 @@ public class Sortaplication {
         int[] radix = original.clone();
         medirTiempo("Radix Sort", () -> Sorter.radixSort(radix));
 
-        // Bubble sort
-        int[] bubble = original.clone();
-        medirTiempo("Bubble Sort", () -> Sorter.bubbleSort(bubble));
+        // selection sort
+        int[] selection = original.clone();
+        medirTiempo("Selection Sort", () -> Sorter.selectionSort(selection));
 
         // Verificación
-        System.err.println("Ejemplo de arreglo ordenado");
+        System.err.println("test arreglo ordenado");
         System.err.println(Arrays.toString(quick));
     }
 
