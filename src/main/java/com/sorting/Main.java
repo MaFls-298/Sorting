@@ -8,7 +8,7 @@ public class Main {
 
         // generarnumeros ////////////////////////////////////
         NumGenerator generator = new NumGenerator(Path.of("data/numbers.txt"));
-        generator.generate(3000);
+        generator.generate(200);
 
         /////////////////////////////////////////////////////
 

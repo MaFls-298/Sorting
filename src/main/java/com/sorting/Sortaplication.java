@@ -6,35 +6,52 @@ public class Sortaplication {
 
     public static void ejecutarSorts(int[] original) {
 
-        // Gnome sort
-        int[] gnome = original.clone();
-        medirTiempo("Gnome Sort", () -> Sorter.gnomeSort(gnome));
+        for (int size = 10; size <= 3000; size += 10) {
 
-        // Merge sort
-        int[] merge = original.clone();
-        medirTiempo("Merge Sort", () -> Sorter.mergeSort(merge));
+            if (size > original.length) break;
 
-        // Quick sort
-        int[] quick = original.clone();
-        medirTiempo("Quick Sort", () -> Sorter.quickSort(quick));
+            System.out.println("\n==============================");
+            System.out.println("Tamano: " + size);
+            System.out.println("==============================");
 
-        // Radix sort
-        int[] radix = original.clone();
-        medirTiempo("Radix Sort", () -> Sorter.radixSort(radix));
+            int[] subset = Arrays.copyOf(original, size);
 
-        // selection sort
-        int[] selection = original.clone();
-        medirTiempo("Selection Sort", () -> Sorter.selectionSort(selection));
+            // gnome sort
+            ejecutarAlgoritmo("Gnome Sort", subset, Sorter::gnomeSort);
 
-        // Verificación
-        System.err.println("test arreglo ordenado");
-        System.err.println(Arrays.toString(quick));
+            // merge sort
+            ejecutarAlgoritmo("Merge Sort", subset, Sorter::mergeSort);
+
+            // quick sort
+            ejecutarAlgoritmo("Quick Sort", subset, Sorter::quickSort);
+
+            // radix sort
+            ejecutarAlgoritmo("Radix Sort", subset, Sorter::radixSort);
+
+            // selection sort
+            ejecutarAlgoritmo("Selection Sort", subset, Sorter::selectionSort);
+        }
     }
 
-    private static void medirTiempo(String nombre, Runnable algoritmo) {
+    private static void ejecutarAlgoritmo(String nombre, int[] base, java.util.function.Consumer<int[]> algoritmo) {
+
+         // desordenado
+        int[] desordenado = base.clone();
         long inicio = System.nanoTime();
-        algoritmo.run();
+        algoritmo.accept(desordenado);
         long fin = System.nanoTime();
-        System.out.println(nombre + " -> " + (fin - inicio) + " ns");
+        long tiempoDesordenado = fin - inicio;
+
+        // ordenado
+        int[] ordenado = desordenado.clone();
+        inicio = System.nanoTime();
+        algoritmo.accept(ordenado);
+        fin = System.nanoTime();
+        long tiempoOrdenado = fin - inicio;
+
+        System.out.println(nombre);
+        System.out.println("   Desordenado -> " + tiempoDesordenado + " ns");
+        System.out.println("   Ordenado    -> " + tiempoOrdenado + " ns");
+        System.out.println();
     }
 }
