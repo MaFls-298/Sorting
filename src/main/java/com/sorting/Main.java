@@ -3,18 +3,17 @@ package com.sorting;
 import java.nio.file.Path;
 
 public class Main {
+
     public static void main(String[] args) throws Exception {
 
-        //comentar estas dos lineas para no generar mas n umeros
-
-        //////////////////
-        
+        // Comenta estas líneas si no quieres generar nuevos números
         NumGenerator generator = new NumGenerator(Path.of("data/numbers.txt"));
-        generator.generate(100); //cambiar cantidad de numeros a generar
+        generator.generate(100);
 
-        ///////////////
-        
+        // Leer números
+        int[] original = Numreader.readNumbers(Path.of("data/numbers.txt"));
 
-
+        // Ejecutar todos los sorts
+        SortRunner.ejecutarSorts(original);
     }
 }
